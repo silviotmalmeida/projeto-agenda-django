@@ -15,6 +15,10 @@ services:
     volumes:
       #pasta do codigo fonte da aplicacao
       - "./app:/root"
+
+    #porta a ser exposta
+    ports:
+      - 8000:8000
   
     #artifício para manter o container aberto
     tty: true
