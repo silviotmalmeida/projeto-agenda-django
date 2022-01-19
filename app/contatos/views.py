@@ -1,4 +1,7 @@
 from django.shortcuts import render
 
+
+# definindo a view index
 def index(request):
-    return render(request, 'contatos/index.html') # definindo a view index
+    # o html deve estar na pasta templates/contatos/
+    return render(request, 'contatos/index.html')

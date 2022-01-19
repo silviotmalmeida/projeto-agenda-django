@@ -1,3 +1,6 @@
+<!-- arquivo de template global do sistema -->
+
+<!-- carregando a localização dos arquivos estáticos -->
 {% load static %}
 
 <!DOCTYPE html>
@@ -5,21 +8,32 @@
   <head>
     <title>Agenda</title>
 
+    <!-- carregando o título definido em partial/_head.html -->
     {% include 'partial/_head.html' %}
+    
   </head>
 
   <body>
+
+    <!-- carregando o menu definido em partial/_nav.html -->
     {% include 'partial/_nav.html' %}
 
     <!-- Page Content -->
     <div class="container">
       <div class="row">
-        <div class="col-lg-12">{% block content %} {% endblock %}</div>
+        <div class="col-lg-12">
+          
+          <!-- carregando o conteúdo definido na view content -->
+          {% block content %} {% endblock %}
+        
+        </div>
       </div>
     </div>
 
     <!-- Bootstrap core JavaScript -->
+    <!-- carregando os arquivos estáticos -->
     <script src="{% static 'vendor/jquery/jquery.slim.min.js'%}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
   </body>
 </html>
