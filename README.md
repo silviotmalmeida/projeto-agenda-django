@@ -28,3 +28,7 @@ Principais comandos do django:
 - Para criar as migrations utiliza o comando dentro da pasta do projeto: python3 manage.py makemigrations
 
 - Para aplicar as migrations utiliza o comando dentro da pasta do projeto: python3 manage.py migrate
+
+- Para criar o superusuário da área administrativa utiliza o comando dentro da pasta do projeto: python3 manage.py createsuperuser
+
+- Para iniciar o servidor de desenvolvimento utiliza o comando dentro da pasta do projeto: python3 manage.py runserver 0.0.0.0:8080
