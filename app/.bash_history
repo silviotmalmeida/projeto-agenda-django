@@ -23,3 +23,11 @@ python3 manage.py check
 exit
 apt install tzdata
 exit
+django-admin --version
+exit
+cd /root/
+python3 manage.py migrate
+exit
+cd /root/
+python3 manage.py createsuperuser
+exit
