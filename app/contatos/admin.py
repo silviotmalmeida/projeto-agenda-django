@@ -23,9 +23,12 @@ class ContatoAdmin(admin.ModelAdmin):
 
     # definindo as colunas a serem exibidas
     list_display = ('id', 'nome', 'sobrenome', 'telefone',
-                    'email', 'data_criacao', 'categoria')
+                    'email', 'data_criacao', 'categoria', 'ativo')
 
-    # definindo em quais colunas serão colocados links de edição
+    # definindo as colunas liberadas para ediçao na tela de listagem
+    list_editable = ('ativo',)
+
+    # definindo em quais colunas serão colocados links para tela de edição
     list_display_links = ('nome',)
 
     # definindo em quais colunas serão criados filtros

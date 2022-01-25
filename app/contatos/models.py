@@ -37,6 +37,9 @@ class Contato(models.Model):
     # criando o atributo categoria com referência à model Categoria, sem deleção em castaca
     categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
 
+    # criando o atributo descricao como booleano, com default True
+    ativo = models.BooleanField(default=True)
+
     # definindo qual atributo da model será exibido na área administrativa
     def __str__(self):
         return self.nome

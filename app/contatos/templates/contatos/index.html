@@ -18,22 +18,52 @@
   </thead>
   <tbody>
 
-    <!-- iterando sobre o array de contatos atribuído na view -->
+    <!-- iterando sobre o array de contatos definido na view -->
     {% for contato in contatos %}
 
-      <!-- imprimindo as informações na tela -->
-      <tr>
-        <td>
-          <a href="#">{{ contato.nome }}</a>
-        </td>
-        <td>{{ contato.sobrenome }}</td>
-        <td>{{ contato.telefone }}</td>
-        <td>{{ contato.categoria }}</td>
-      </tr>
+      <!-- se o contato estiver ativo -->
+      {% if contato.ativo %}
 
+        <!-- imprimindo as informações na tela -->
+        <tr>
+          <td>
+            <a href="{% url 'detalhe' contato.id %}">{{ contato.nome }}</a>
+          </td>
+          <td>{{ contato.sobrenome }}</td>
+          <td>{{ contato.telefone }}</td>
+          <td>{{ contato.categoria }}</td>
+        </tr>
+
+      {% endif %}
     {% endfor %}
     
   </tbody>
 </table>
+
+<!-- implementando a paginação -->
+<nav>
+
+  <ul class="pagination">
+
+    <!-- iterando sobre o array páginas do paginador definido na view -->
+    {% for page in contatos.paginator.page_range %}
+
+      <!-- se for a página atual, adiciona classe active ao botão -->
+      {% if contatos.number == page %}
+
+        <!-- imprimindo as informações na tela -->
+        <li class="page-item active"><a class="page-link" href="?p={{ page }}">{{ page }}</a></li>
+
+      <!-- senão, simplemente insere o botão -->
+      {% else %}
+
+        <!-- imprimindo as informações na tela -->
+        <li class="page-item"><a class="page-link" href="?p={{ page }}">{{ page }}</a></li>
+
+      {% endif %}
+    {% endfor %}
+
+  </ul>
+</nav>
 
 {% endblock %}
