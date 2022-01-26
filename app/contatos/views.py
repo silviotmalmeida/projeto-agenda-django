@@ -1,13 +1,42 @@
 from django.shortcuts import render, get_object_or_404
-from django.core.paginator import Paginator # importando a biblioteca de paginação 
+# importando a biblioteca de query complexa
+from django.db.models import Q, Value
+# importando a biblioteca de concatenação de atributos
+from django.db.models.functions import Concat
+# importando a biblioteca de paginação
+from django.core.paginator import Paginator
 from .models import Contato  # importando a model Contato para exibição nas views
 
 
 # definindo a view index
 def index(request):
 
-    # retornando os registros do banco de dados
-    contatos = Contato.objects.all()
+    # obtendo o valor do atributo de busca s da requisição
+    search_value = request.GET.get('s')
+
+    # caso seja None, atribui ''
+    if search_value == None:
+        search_value = ''
+
+    # criando um atributo composto por nome e sobrenome para possibilitar a busca
+    concat_fields = Concat('nome', Value(' '), 'sobrenome')
+
+    # retornando os registros do banco de dados, ordenados alfabeticamente por nome
+    # e filtrados pelo atributo composto nome_sobrenome ou telefone contendo o valor
+    # da busca e ativo=True
+    contatos = Contato.objects.annotate(
+
+        # aplicando o atributo composto criado anteriormente
+        nome_sobrenome=concat_fields
+
+    ).filter(
+
+        # aplicando o filtro de busca s
+        Q(nome_sobrenome__icontains=search_value) | Q(
+            telefone__icontains=search_value),
+        ativo=True
+
+    ).order_by('nome')
 
     # repassando os contatos para o paginador, definindo o limite por página
     paginator = Paginator(contatos, 1)
