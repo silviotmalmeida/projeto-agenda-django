@@ -14,11 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+
 # foi importado também o include, para permitir a inclusão das urls do app
 from django.urls import path, include
+
+# importações para carregamento de imagens no sistema
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     # adicionando as urls relativas ao app contatos
     path('', include('contatos.urls')),
+    # adicionando as urls relativas ao app accounts
+    path('', include('accounts.urls')),
     path('admin/', admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # adicionando variáveis para suportar o carregamento de imagens

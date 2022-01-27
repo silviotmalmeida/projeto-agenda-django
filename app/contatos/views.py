@@ -6,16 +6,26 @@ from django.db.models.functions import Concat
 # importando a biblioteca de paginação
 from django.core.paginator import Paginator
 from .models import Contato  # importando a model Contato para exibição nas views
+from django.contrib import messages  # importando bilbioteca de mensagens
 
 
 # definindo a view index
 def index(request):
-
     # obtendo o valor do atributo de busca s da requisição
     search_value = request.GET.get('s')
 
     # caso seja None, atribui ''
     if search_value == None:
+        search_value = ''
+
+    # caso o tamanho do atributo de busca s seja inferior a 3 e não esteja vazio
+    if not len(search_value) > 2 and search_value != '':
+
+        # envia uma mensagem de erro
+        messages.add_message(request, messages.ERROR,
+                             'Digite pelo menos 3 caracteres no campo de busca')
+
+        # nulifica o atributo de busca
         search_value = ''
 
     # criando um atributo composto por nome e sobrenome para possibilitar a busca

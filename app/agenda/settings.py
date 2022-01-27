@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+# importação para redefinição das mensagens do django
+from django.contrib.messages import constants
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'contatos.apps.ContatosConfig',  # registrando o app contatos
+    'accounts.apps.AccountsConfig',  # registrando o app accounts
 ]
 
 MIDDLEWARE = [
@@ -108,9 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-BR' # personalizando o idioma da área administrativa
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Recife' # personalizando o timezone da área administrativa
 
 USE_I18N = True
 
@@ -125,6 +129,19 @@ STATICFILES_DIRS = [
     # incluindo a pasta global de arquivos estáticos para utilização do django
     BASE_DIR / 'templates/static',
 ]
+
+# definindo os caminhos da paste das imagens
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = 'media/'
+
+# redefinindo as mensagens default do django por classes bootstrap
+MESSAGE_TAGS = {
+    constants.ERROR: 'alert-danger',
+    constants.WARNING: 'alert-warning',
+    constants.DEBUG: 'alert-info',
+    constants.SUCCESS: 'alert-sucess',
+    constants.INFO: 'alert-info',
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

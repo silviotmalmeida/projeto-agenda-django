@@ -7,6 +7,9 @@
 
 <h1 class="mt-5">Minha agenda</h1>
 
+<!-- carregando as mensagens definidas em partial/_messages.html -->
+{% include 'partial/_messages.html' %}
+
 <!-- implementando o formulário de busca -->
 <!-- recarrega a view index, com atributo de busca s populado -->
 <form method="get" action="{% url 'index' %}">

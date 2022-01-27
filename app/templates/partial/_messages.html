@@ -1,0 +1,11 @@
+<!-- se existirem mensagens a serem exibidas -->
+{% if messages %}
+
+    <!-- iterando sobre o array de mensagens -->
+    {% for message in messages %}
+
+        <!-- exibe a mensagem na tela -->
+        <div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
+
+    {% endfor %}
+{% endif %}

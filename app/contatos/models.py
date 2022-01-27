@@ -40,6 +40,9 @@ class Contato(models.Model):
     # criando o atributo descricao como booleano, com default True
     ativo = models.BooleanField(default=True)
 
+    # criando o atributo foto, opcional, e definindo o destino do arquivo
+    foto = models.ImageField(blank=True, upload_to='pictures/%Y/%m/')
+
     # definindo qual atributo da model será exibido na área administrativa
     def __str__(self):
         return self.nome
