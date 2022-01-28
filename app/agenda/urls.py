@@ -27,6 +27,6 @@ urlpatterns = [
     # adicionando as urls relativas ao app contatos
     path('', include('contatos.urls')),
     # adicionando as urls relativas ao app accounts
-    path('', include('accounts.urls')),
+    path('accounts/', include('accounts.urls')),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # adicionando variáveis para suportar o carregamento de imagens

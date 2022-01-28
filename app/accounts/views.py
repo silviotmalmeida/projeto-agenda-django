@@ -10,7 +10,17 @@ def logout(request):
 
 
 def cadastro(request):
-    return render(request, 'accounts/cadastro.html')
+
+    if request.method != 'POST':
+        return render(request, 'accounts/cadastro.html')
+
+    firstname = request.POST.get('firstname')
+    lastname = request.POST.get('lastname')
+    email = request.POST.get('email')
+    login = request.POST.get('login')
+    password = request.POST.get('password')
+    confirm_password = request.POST.get('confirm_password')
+    
 
 
 def dashboard(request):
