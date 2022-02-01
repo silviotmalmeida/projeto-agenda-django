@@ -4,7 +4,7 @@ from . import views
 
 
 urlpatterns = [
-    # definindo a url da página index_login
+    # definindo a url da página index_login, para o path vazio
     path('', views.login, name='index_login'),
     # definindo a url da página login
     path('login/', views.login, name='login'),
