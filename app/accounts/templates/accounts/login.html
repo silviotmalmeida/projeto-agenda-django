@@ -3,7 +3,7 @@
 {% extends 'base.html' %}
 
 <!-- criando o bloco title a ser inserido no base.html -->
-{% block title %}Login {% endblock %}
+{% block title %}Login{% endblock %}
 
 <!-- criando o bloco content a ser inserido no base.html -->
 {% block content %}
@@ -37,7 +37,10 @@
     <label>Senha</label>
     <input type="password" name="password" class="form-control" />
   </div>
-  <button type="submit" class="btn btn-primary">Entrar</button>
+  <button type="submit" class="btn btn-primary">Entre</button>
+
+  <!-- link para a página de cadastro -->
+  <a class="btn btn-secondary" href="{% url 'cadastro' %}" role="button">Cadastre-se</a>
 </form>
 
 <!-- se o usuário estiver logado -->

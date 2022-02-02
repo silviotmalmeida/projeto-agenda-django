@@ -2,19 +2,16 @@
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-  <div class="container">
-    <!-- adicionando o link para a url index -->
-    <a class="navbar-brand" href="{% url 'index' %}">Agenda</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarResponsive"
-      aria-controls="navbarResponsive"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">      
+      <li class="nav-item">
+        <!-- adicionando o link para a url index -->
+        <a class="navbar-brand" href="{% url 'index' %}">Agenda</a>
+      </li>
+      <li class="nav-item">
+        <!-- adicionando o link para a url login -->
+        <a class="nav-link" href="{% url 'login' %}">Login</a>
+      </li>
+    </ul>    
   </div>
 </nav>
