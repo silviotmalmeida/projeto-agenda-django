@@ -1,11 +1,12 @@
-from django.shortcuts import render, get_object_or_404
+# rederização das views e redirecionamento entre views
+from django.shortcuts import render, get_object_or_404, redirect
 # importando a biblioteca de query complexa
 from django.db.models import Q, Value
 # importando a biblioteca de concatenação de atributos
 from django.db.models.functions import Concat
 # importando a biblioteca de paginação
 from django.core.paginator import Paginator
-from .models import Contato  # importando a model Contato para exibição nas views
+from .models import Contato, Categoria  # importando as models para exibição nas views
 from django.contrib import messages  # importando bilbioteca de mensagens
 
 
@@ -49,7 +50,7 @@ def index(request):
     ).order_by('nome')
 
     # repassando os contatos para o paginador, definindo o limite por página
-    paginator = Paginator(contatos, 1)
+    paginator = Paginator(contatos, 7)
 
     # obtendo o número da página a partir da URL
     page = request.GET.get('p')
@@ -75,3 +76,51 @@ def detalhe(request, contato_id):
     return render(request, 'contatos/detalhe.html', {
         'contato': contato,
     })
+
+
+# definindo a view loadtestdata
+# tem a função de carregar uma massa de dados de teste
+def loadtestdata(request):
+
+    # lista das categorias a serem criadas
+    categoriasTestData = [
+        {'nome': 'Amigos'},
+        {'nome': 'Família'},
+        {'nome': 'Trabalho'},                
+    ]
+
+    # iterando sobre o array de categorias
+    for categoriaTestData in categoriasTestData:
+
+        # cadastrando a nova categoria
+        categoria = Categoria.objects.create(nome=categoriaTestData['nome'])
+        categoria.save()
+
+    # lista dos contatos a serem criados
+    contatosTestData = [
+        {'nome': 'Vaiwu', 'sobrenome': 'Guas', 'telefone':'123456', 'email':'guas@email.com', 'descricao':'descricao Guas', 'categoria_id':1},
+        {'nome': 'Koebeoza', 'sobrenome': 'Cenes', 'telefone':'123456', 'email':'cenes@email.com', 'descricao':'descricao Cenes', 'categoria_id':2},
+        {'nome': 'Asnos', 'sobrenome': 'Gyeor', 'telefone':'123456', 'email':'gyeor@email.com', 'descricao':'descricao Gyeor', 'categoria_id':3},
+
+        {'nome': 'Woiviosi', 'sobrenome': 'Ponudo', 'telefone':'123456', 'email':'ponudo@email.com', 'descricao':'descricao Ponudo', 'categoria_id':1},
+        {'nome': 'Brabya', 'sobrenome': 'Boytuvor', 'telefone':'123456', 'email':'boytuvor@email.com', 'descricao':'descricao Boytuvor', 'categoria_id':2},
+        {'nome': 'Sarun', 'sobrenome': 'Myohain', 'telefone':'123456', 'email':'myohain@email.com', 'descricao':'descricao Myohain', 'categoria_id':3},
+
+        {'nome': 'Esxayse', 'sobrenome': 'Boefa', 'telefone':'123456', 'email':'boefa@email.com', 'descricao':'descricao Boefa', 'categoria_id':1},
+        {'nome': 'Leges', 'sobrenome': 'Gyon', 'telefone':'123456', 'email':'gyon@email.com', 'descricao':'descricao Gyon', 'categoria_id':2},
+        {'nome': 'Kakes', 'sobrenome': 'Kaumo', 'telefone':'123456', 'email':'kaumo@email.com', 'descricao':'descricao Kaumo', 'categoria_id':3},
+    ]
+
+    # iterando sobre o array de contatos
+    for contatoTestData in contatosTestData:
+    
+        # cadastrando o novo contato
+        contato = Contato.objects.create(nome=contatoTestData['nome'], sobrenome=contatoTestData['sobrenome'],
+                                        telefone=contatoTestData['telefone'], email=contatoTestData['email'],
+                                        descricao=contatoTestData['descricao'], categoria_id=contatoTestData['categoria_id'])
+        contato.save()
+
+    # redirecionando para a página de index
+    return redirect('index')
+
+

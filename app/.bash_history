@@ -44,3 +44,14 @@ exit
 cd /root/
 python3 manage.py startapp accounts
 exit
+ls
+cd /root/
+ls
+python3 manage.py migrate
+exit
+cd /root/
+python3 manage.py createsuperuser
+exit
+cd /root/
+python3 manage.py createsuperuser
+exit

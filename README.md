@@ -10,9 +10,13 @@ O projeto encontra-se dockerizado para facilitar a implantação. As orientaçõ
 
 - Para iniciar o container utiliza-se o comando "sudo ./startContainers.sh";
 
+- Para criar o BD utiliza-se o comando "sudo ./runMigrate.sh";
+
 - Para iniciar o servidor utiliza-se o comando "sudo ./runServer.sh";
 
 - O sistema estará disponível na URL "0.0.0.0:8080";
+
+- Para carregar os dados de teste utiliza-se a URL "0.0.0.0:8080/loadtestdata"
 
 - Para encerrar a execução utiliza-se o comando "sudo ./stopContainers.sh";
 
